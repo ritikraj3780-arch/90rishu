@@ -17,59 +17,61 @@
 
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--light-gray); color: #333; overflow-x: hidden; }
         
-        /* 1. TOP URGENCY BAR (With Mini Timer) */
+        /* 1. TOP URGENCY BAR (Fixed Top) */
         .top-bar {
             background: var(--alert-red);
             color: white;
             text-align: center;
-            padding: 6px 10px;
-            font-size: 0.8rem;
+            padding: 5px 0;
+            font-size: 0.75rem;
             font-weight: bold;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             position: sticky;
             top: 0;
             z-index: 1002;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .mini-timer { 
             background: rgba(0,0,0,0.2); 
-            padding: 2px 8px; 
-            border-radius: 4px; 
+            padding: 1px 6px; 
+            border-radius: 3px; 
             font-family: monospace; 
             letter-spacing: 0.5px;
-            color: #fff;
         }
 
         /* 2. HEADER */
         header { 
             background: var(--primary-blue); 
-            padding: 8px 15px; 
+            padding: 10px 15px; 
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
             position: sticky; 
-            top: 33px; /* Below top bar */
+            top: 28px; /* Offset for top bar */
             z-index: 1000; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
         }
         
-        .brand-container { display: flex; align-items: center; gap: 8px; }
-        .logo-img { height: 32px; width: auto; }
+        .brand-container { display: flex; align-items: center; gap: 10px; }
+        .logo-img { height: 32px; width: auto; } /* Fixed Logo Size */
         
-        /* FIX: Smaller Text on Mobile */
+        /* FIXED: Responsive Text Size */
         .brand-name {
             color: var(--accent-gold);
             font-weight: 800;
-            font-size: 1rem;
+            font-size: 1.1rem; /* Default for Laptop */
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        @media (max-width: 400px) { .brand-name { font-size: 0.85rem; } }
+        @media (max-width: 480px) { 
+            .brand-name { font-size: 0.85rem; } /* Smaller for Phone */
+            .logo-img { height: 28px; }
+        }
         
-        /* FIX: Minimal Support Button (No Box) */
+        /* FIXED: Support Button (Text Only, No Box) */
         .contact-container { position: relative; }
         .contact-btn { 
             background: transparent; 
@@ -77,42 +79,40 @@
             color: var(--white); 
             padding: 5px; 
             cursor: pointer; 
-            font-size: 0.85rem; 
+            font-size: 0.8rem; 
             font-weight: 600;
             display: flex; 
             align-items: center; 
-            gap: 6px;
-            opacity: 0.9;
+            gap: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .contact-btn:hover { opacity: 1; color: var(--accent-gold); }
+        .contact-btn:hover { color: var(--accent-gold); }
+        .contact-btn i { font-size: 1rem; color: var(--accent-gold); }
         
         .contact-dropdown { display: none; position: absolute; top: 120%; right: 0; background: white; min-width: 140px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden; z-index: 1001; }
         .contact-dropdown a { display: block; padding: 10px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; font-size: 0.85rem; }
         .contact-dropdown.show { display: block; }
 
-        /* 3. SLIDER SECTION (Laptop Fix: No Zoom/Cut) */
+        /* 3. SLIDER SECTION (The Master Fix) */
         .slider-container {
             width: 100%; 
             position: relative; 
             overflow: hidden; 
-            background: #000; /* Black background fills gaps */
+            background: var(--primary-blue); /* Blends with header so bars aren't ugly */
             margin-bottom: 0;
         }
 
-        /* Mobile Layout */
+        /* Mobile Rule: 16:9 Ratio */
         @media (max-width: 768px) {
             .slider-container { aspect-ratio: 16/9; }
-            .slide { object-fit: cover; } /* Fills screen on phone */
+            .slide { object-fit: cover; } /* Fills perfectly on phone */
         }
 
-        /* Laptop Layout (The Fix) */
+        /* Laptop Rule: Fixed Height, No Cropping */
         @media (min-width: 769px) {
-            .slider-container { 
-                height: 400px; /* Fixed Banner Height */
-            }
-            .slide { 
-                object-fit: contain; /* SHOWS FULL IMAGE, NO CUTTING */
-            } 
+            .slider-container { height: 450px; } /* Restrict height */
+            .slide { object-fit: contain; } /* SHOW FULL IMAGE (No cutting) */
         }
 
         .slider-wrapper { width: 100%; height: 100%; position: relative; }
@@ -128,10 +128,16 @@
         .prev-btn { left: 10px; } .next-btn { right: 10px; }
 
         /* HERO SECTION */
-        .hero { background: linear-gradient(135deg, #0a192f 0%, #112240 100%); color: white; padding: 30px 20px 50px 20px; text-align: center; border-top: 3px solid var(--accent-gold); }
+        .hero { background: linear-gradient(135deg, #0a192f 0%, #112240 100%); color: white; padding: 30px 20px 50px 20px; text-align: center; border-top: 2px solid var(--accent-gold); }
         .hero h1 { margin: 0 0 10px 0; font-size: 1.8rem; color: var(--accent-gold); line-height: 1.2; }
         .hero p { font-size: 0.95rem; margin: 10px auto; max-width: 600px; opacity: 0.9; }
         
+        /* Main Timer */
+        .timer-box { background: rgba(255,255,255,0.1); display: inline-flex; gap: 10px; padding: 10px 15px; border-radius: 8px; margin-top: 15px; border: 1px solid rgba(251, 191, 36, 0.3); }
+        .time-unit { text-align: center; }
+        .time-val { display: block; font-size: 1.2rem; font-weight: bold; color: var(--white); }
+        .time-label { font-size: 0.6rem; color: var(--accent-gold); text-transform: uppercase; }
+
         /* CONTAINER */
         .container { max-width: 800px; margin: -30px auto 20px auto; padding: 0 15px; position: relative; padding-bottom: 80px; z-index: 10; }
         .info-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); margin-bottom: 15px; border-top: 4px solid var(--accent-gold); }
@@ -209,6 +215,14 @@
         <h1>BIHAR SCHOLARSHIP TEST</h1>
         <p>Empowering Merit, Fueling Future Leaders.</p>
         <div style="background:var(--accent-gold); color:var(--primary-blue); padding:4px 12px; border-radius:20px; display:inline-block; font-weight:bold; font-size:0.9rem;">🏆 Prizes Worth ₹1 Lakh+</div>
+        
+        <br>
+        <div class="timer-box" id="countdown">
+            <div class="time-unit"><span class="time-val" id="days">00</span><span class="time-label">Days</span></div>
+            <div class="time-unit"><span class="time-val" id="hours">00</span><span class="time-label">Hrs</span></div>
+            <div class="time-unit"><span class="time-val" id="mins">00</span><span class="time-label">Mins</span></div>
+            <div class="time-unit"><span class="time-val" id="secs">00</span><span class="time-label">Secs</span></div>
+        </div>
     </div>
 
     <div class="container">
@@ -348,6 +362,7 @@
             const distance = examDate - now;
             
             if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "<div style='color:white; font-weight:bold'>REGISTRATION CLOSED</div>";
                 document.getElementById("miniTimer").innerText = "CLOSED";
                 return;
             }
@@ -357,8 +372,14 @@
             const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const secs = Math.floor((distance % (1000 * 60)) / 1000);
 
+            // Update Big Timer
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("mins").innerText = mins;
+            document.getElementById("secs").innerText = secs;
+
             // Update Mini Top Bar Timer
-            document.getElementById("miniTimer").innerText = days + "d " + hours + "h " + mins + "m Left";
+            document.getElementById("miniTimer").innerText = days + "d " + hours + "h Left";
         }
         setInterval(updateTimers, 1000);
 
