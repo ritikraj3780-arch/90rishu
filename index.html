@@ -19,16 +19,28 @@
         body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light-gray); color: var(--text-dark); overflow-x: hidden; }
         
         /* HEADER */
-        header { background: var(--primary-blue); padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .logo { font-size: 22px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
+        header { background: var(--primary-blue); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .logo { font-size: 20px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
         
-        /* Contact Dropdown */
+        /* FIXED: SMALLER CONTACT BUTTON */
         .contact-container { position: relative; }
-        .contact-btn { background: transparent; border: 1px solid var(--accent-gold); color: var(--white); padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .contact-btn { 
+            background: transparent; 
+            border: 1px solid var(--accent-gold); 
+            color: var(--white); 
+            padding: 5px 12px;  /* Reduced Padding */
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 0.8rem; /* Smaller Font */
+            transition: 0.3s; 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+        }
         .contact-btn:hover { background: rgba(251, 191, 36, 0.1); }
         
-        .contact-dropdown { display: none; position: absolute; top: 120%; right: 0; background: white; min-width: 180px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden; z-index: 1001; animation: fadeIn 0.2s ease; }
-        .contact-dropdown a { display: flex; align-items: center; gap: 10px; padding: 12px 15px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; transition: 0.2s; }
+        .contact-dropdown { display: none; position: absolute; top: 120%; right: 0; background: white; min-width: 160px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden; z-index: 1001; animation: fadeIn 0.2s ease; }
+        .contact-dropdown a { display: flex; align-items: center; gap: 10px; padding: 10px 15px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; transition: 0.2s; font-size: 0.9rem; }
         .contact-dropdown a:hover { background: #f9f9f9; color: var(--primary-blue); }
         .contact-dropdown a:last-child { border-bottom: none; }
         .contact-dropdown.show { display: block; }
@@ -36,33 +48,33 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* HERO SECTION */
-        .hero { background: linear-gradient(135deg, #0a192f 0%, #112240 100%); color: white; padding: 60px 20px 80px 20px; text-align: center; position: relative; }
+        .hero { background: linear-gradient(135deg, #0a192f 0%, #112240 100%); color: white; padding: 50px 20px 70px 20px; text-align: center; position: relative; }
         .hero::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 30px 30px; opacity: 0.3; }
         
-        .hero h1 { margin: 0 0 10px 0; font-size: 2.5rem; color: var(--accent-gold); text-shadow: 0 2px 10px rgba(251, 191, 36, 0.2); line-height: 1.2; }
-        .hero p { font-size: 1.2rem; margin: 15px 0; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .hero h1 { margin: 0 0 10px 0; font-size: 2.2rem; color: var(--accent-gold); text-shadow: 0 2px 10px rgba(251, 191, 36, 0.2); line-height: 1.2; }
+        .hero p { font-size: 1.1rem; margin: 15px 0; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
         
         /* COUNTDOWN TIMER */
-        .timer-box { background: rgba(255,255,255,0.1); display: inline-flex; gap: 15px; padding: 15px; border-radius: 10px; margin-top: 20px; border: 1px solid rgba(251, 191, 36, 0.3); backdrop-filter: blur(5px); }
+        .timer-box { background: rgba(255,255,255,0.1); display: inline-flex; gap: 12px; padding: 12px; border-radius: 10px; margin-top: 20px; border: 1px solid rgba(251, 191, 36, 0.3); backdrop-filter: blur(5px); }
         .time-unit { text-align: center; }
-        .time-val { display: block; font-size: 1.5rem; font-weight: bold; color: var(--white); }
-        .time-label { font-size: 0.7rem; color: var(--accent-gold); text-transform: uppercase; }
+        .time-val { display: block; font-size: 1.3rem; font-weight: bold; color: var(--white); }
+        .time-label { font-size: 0.65rem; color: var(--accent-gold); text-transform: uppercase; }
 
         /* MAIN CONTAINER */
         .container { max-width: 800px; margin: -40px auto 20px auto; padding: 0 20px; position: relative; padding-bottom: 90px; }
         
         /* CARDS */
-        .info-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 20px; border-top: 5px solid var(--accent-gold); }
-        .info-card h3 { margin-top: 0; color: var(--primary-blue); border-bottom: 2px solid #eee; padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .info-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 20px; border-top: 4px solid var(--accent-gold); }
+        .info-card h3 { margin-top: 0; color: var(--primary-blue); border-bottom: 2px solid #eee; padding-bottom: 10px; display: flex; align-items: center; gap: 10px; font-size: 1.2rem; }
         
         .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .feature-item { background: #f8fafc; padding: 12px; border-radius: 8px; font-weight: 500; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; border: 1px solid #eee; }
+        .feature-item { background: #f8fafc; padding: 12px; border-radius: 8px; font-weight: 500; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; border: 1px solid #eee; }
 
         /* FOUNDER BOX */
         .founder-box { display: flex; align-items: center; gap: 15px; background: #eff6ff; padding: 15px; border-radius: 10px; margin-top: 15px; border: 1px solid #bfdbfe; }
-        .founder-icon { width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .founder-text h4 { margin: 0; color: var(--primary-blue); font-size: 1.1rem; }
-        .founder-text p { margin: 3px 0 0 0; font-size: 0.85rem; color: #555; }
+        .founder-icon { width: 45px; height: 45px; background: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 22px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .founder-text h4 { margin: 0; color: var(--primary-blue); font-size: 1rem; }
+        .founder-text p { margin: 3px 0 0 0; font-size: 0.8rem; color: #555; }
 
         /* PREMIUM SYLLABUS BTN */
         .syllabus-card { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2px solid #e5e7eb; padding: 15px; border-radius: 10px; margin-top: 15px; transition: 0.3s; cursor: pointer; text-decoration: none; color: #333; }
@@ -74,14 +86,14 @@
 
         /* FAQ SECTION */
         .faq-item { border-bottom: 1px solid #eee; padding: 12px 0; }
-        .faq-q { font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; }
+        .faq-q { font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; font-size: 0.95rem; }
         .faq-a { font-size: 0.9rem; color: #666; margin-top: 8px; display: none; line-height: 1.5; }
         .faq-item.active .faq-a { display: block; }
         .faq-item.active .faq-q { color: var(--primary-blue); }
 
         /* STICKY FOOTER BUTTON */
         .sticky-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); display: flex; justify-content: center; z-index: 900; box-sizing: border-box; }
-        .register-btn { background: var(--accent-gold); color: var(--primary-blue); border: none; padding: 16px 40px; font-size: 18px; font-weight: 800; border-radius: 50px; cursor: pointer; width: 100%; max-width: 450px; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.5); transition: transform 0.2s; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .register-btn { background: var(--accent-gold); color: var(--primary-blue); border: none; padding: 15px 30px; font-size: 18px; font-weight: 800; border-radius: 50px; cursor: pointer; width: 100%; max-width: 450px; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.5); transition: transform 0.2s; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .register-btn:active { transform: scale(0.98); }
 
         /* MODAL (POP-UP FORM) */
@@ -100,15 +112,15 @@
         .form-header h2 { margin: 0; color: var(--primary-blue); }
         .form-header p { margin: 5px 0 0 0; color: #666; font-size: 0.9rem; }
 
-        .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 6px; color: #374151; font-size: 0.9rem; }
-        input, select { width: 100%; padding: 14px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; box-sizing: border-box; outline: none; transition: 0.3s; background: #f9fafb; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: #374151; font-size: 0.9rem; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; box-sizing: border-box; outline: none; transition: 0.3s; background: #f9fafb; }
         input:focus, select:focus { border-color: var(--primary-blue); background: white; box-shadow: 0 0 0 3px rgba(10, 25, 47, 0.1); }
         
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #9ca3af; transition: 0.2s; }
         .close-btn:hover { color: #333; }
         
-        .submit-btn { width: 100%; padding: 16px; background: var(--primary-blue); color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(10, 25, 47, 0.3); }
+        .submit-btn { width: 100%; padding: 15px; background: var(--primary-blue); color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(10, 25, 47, 0.3); }
         .submit-btn:hover { background: #112240; }
         .submit-btn:disabled { background: #94a3b8; cursor: not-allowed; }
 
@@ -182,12 +194,12 @@
             <p><strong>Fee:</strong> ₹199 Only</p>
             <p><strong>Mode:</strong> Offline (Your School) / Online</p>
             
-            <a href="syllabus.pdf" class="syllabus-card" download="90Plus_Academy_Syllabus_2026">
+            <a href="syllabus.pdf" class="syllabus-card" target="_blank">
                 <div class="syllabus-left">
                     <i class="far fa-file-pdf pdf-icon"></i>
-                    <span class="syllabus-text">Download Syllabus PDF</span>
+                    <span class="syllabus-text">View & Download Syllabus</span>
                 </div>
-                <i class="fas fa-download download-icon"></i>
+                <i class="fas fa-eye download-icon"></i>
             </a>
         </div>
 
