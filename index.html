@@ -17,23 +17,31 @@
 
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--light-gray); color: #333; overflow-x: hidden; }
         
-        /* 1. TOP URGENCY BAR (New Addition) */
+        /* 1. TOP URGENCY BAR (With Mini Timer) */
         .top-bar {
             background: var(--alert-red);
             color: white;
             text-align: center;
-            padding: 5px 10px;
-            font-size: 0.75rem;
+            padding: 6px 10px;
+            font-size: 0.8rem;
             font-weight: bold;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             position: sticky;
             top: 0;
             z-index: 1002;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        .mini-timer { background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-family: monospace; letter-spacing: 1px; }
+        .mini-timer { 
+            background: rgba(0,0,0,0.2); 
+            padding: 2px 8px; 
+            border-radius: 4px; 
+            font-family: monospace; 
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
 
         /* 2. HEADER */
         header { 
@@ -43,36 +51,37 @@
             align-items: center; 
             justify-content: space-between; 
             position: sticky; 
-            top: 30px; /* Below top bar */
+            top: 33px; /* Below top bar */
             z-index: 1000; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
         }
         
         .brand-container { display: flex; align-items: center; gap: 8px; }
-        .logo-img { height: 30px; width: auto; }
+        .logo-img { height: 32px; width: auto; }
         
-        /* Fixed: Small Text on Mobile */
+        /* FIX: Smaller Text on Mobile */
         .brand-name {
             color: var(--accent-gold);
             font-weight: 800;
-            font-size: 0.9rem; /* Smaller size */
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+        @media (max-width: 400px) { .brand-name { font-size: 0.85rem; } }
         
-        /* Fixed: Minimal Support Button (No Box) */
+        /* FIX: Minimal Support Button (No Box) */
         .contact-container { position: relative; }
         .contact-btn { 
             background: transparent; 
-            border: none; /* No Border */
+            border: none; 
             color: var(--white); 
             padding: 5px; 
             cursor: pointer; 
-            font-size: 0.8rem; 
+            font-size: 0.85rem; 
             font-weight: 600;
             display: flex; 
             align-items: center; 
-            gap: 5px;
+            gap: 6px;
             opacity: 0.9;
         }
         .contact-btn:hover { opacity: 1; color: var(--accent-gold); }
@@ -81,41 +90,41 @@
         .contact-dropdown a { display: block; padding: 10px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; font-size: 0.85rem; }
         .contact-dropdown.show { display: block; }
 
-        /* 3. SLIDER SECTION (Fixed for Laptop & Mobile) */
+        /* 3. SLIDER SECTION (Laptop Fix: No Zoom/Cut) */
         .slider-container {
             width: 100%; 
             position: relative; 
             overflow: hidden; 
-            background: #000;
+            background: #000; /* Black background fills gaps */
             margin-bottom: 0;
         }
 
-        /* Mobile: Keep 16:9 ratio */
+        /* Mobile Layout */
         @media (max-width: 768px) {
             .slider-container { aspect-ratio: 16/9; }
-            .brand-name { font-size: 0.8rem; } /* Even smaller on phone */
+            .slide { object-fit: cover; } /* Fills screen on phone */
         }
 
-        /* Laptop: Fix Height to Banner Style (PW Style) */
+        /* Laptop Layout (The Fix) */
         @media (min-width: 769px) {
             .slider-container { 
-                height: 350px; /* Fixed height for banner look */
-                max-width: 1200px; /* Don't stretch too wide */
-                margin: 0 auto; /* Center it */
+                height: 400px; /* Fixed Banner Height */
             }
-            .slide { object-fit: cover; } /* Cover fills the banner area nicely */
+            .slide { 
+                object-fit: contain; /* SHOWS FULL IMAGE, NO CUTTING */
+            } 
         }
 
         .slider-wrapper { width: 100%; height: 100%; position: relative; }
-        .slide { width: 100%; height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.8s ease-in-out; }
-        @media (min-width: 769px) { .slide { object-fit: cover; } } /* Laptop override */
+        .slide { width: 100%; height: 100%; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.5s ease-in-out; }
         .slide.active { opacity: 1; }
         
         .slider-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(0,0,0,0.4); color: white; border: none;
-            padding: 8px 12px; cursor: pointer; border-radius: 50%; z-index: 60;
+            background: rgba(0,0,0,0.3); color: white; border: none;
+            padding: 10px 15px; cursor: pointer; border-radius: 50%; z-index: 60; font-size: 18px;
         }
+        .slider-btn:hover { background: var(--accent-gold); color: var(--primary-blue); }
         .prev-btn { left: 10px; } .next-btn { right: 10px; }
 
         /* HERO SECTION */
@@ -123,12 +132,6 @@
         .hero h1 { margin: 0 0 10px 0; font-size: 1.8rem; color: var(--accent-gold); line-height: 1.2; }
         .hero p { font-size: 0.95rem; margin: 10px auto; max-width: 600px; opacity: 0.9; }
         
-        /* Main Timer (Big) */
-        .timer-box { background: rgba(255,255,255,0.1); display: inline-flex; gap: 10px; padding: 10px 15px; border-radius: 8px; margin-top: 15px; border: 1px solid rgba(251, 191, 36, 0.3); }
-        .time-unit { text-align: center; }
-        .time-val { display: block; font-size: 1.2rem; font-weight: bold; color: var(--white); }
-        .time-label { font-size: 0.6rem; color: var(--accent-gold); text-transform: uppercase; }
-
         /* CONTAINER */
         .container { max-width: 800px; margin: -30px auto 20px auto; padding: 0 15px; position: relative; padding-bottom: 80px; z-index: 10; }
         .info-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); margin-bottom: 15px; border-top: 4px solid var(--accent-gold); }
@@ -171,7 +174,7 @@
 <body>
 
     <div class="top-bar">
-        <span>🔥 Limited Seats Available!</span>
+        <span>🔥 Limited Seats!</span>
         <span class="mini-timer" id="miniTimer">Loading...</span>
     </div>
 
@@ -206,14 +209,6 @@
         <h1>BIHAR SCHOLARSHIP TEST</h1>
         <p>Empowering Merit, Fueling Future Leaders.</p>
         <div style="background:var(--accent-gold); color:var(--primary-blue); padding:4px 12px; border-radius:20px; display:inline-block; font-weight:bold; font-size:0.9rem;">🏆 Prizes Worth ₹1 Lakh+</div>
-        
-        <br>
-        <div class="timer-box" id="countdown">
-            <div class="time-unit"><span class="time-val" id="days">00</span><span class="time-label">Days</span></div>
-            <div class="time-unit"><span class="time-val" id="hours">00</span><span class="time-label">Hrs</span></div>
-            <div class="time-unit"><span class="time-val" id="mins">00</span><span class="time-label">Mins</span></div>
-            <div class="time-unit"><span class="time-val" id="secs">00</span><span class="time-label">Secs</span></div>
-        </div>
     </div>
 
     <div class="container">
@@ -353,7 +348,6 @@
             const distance = examDate - now;
             
             if (distance < 0) {
-                document.getElementById("countdown").innerHTML = "<div style='color:white; font-weight:bold'>REGISTRATION CLOSED</div>";
                 document.getElementById("miniTimer").innerText = "CLOSED";
                 return;
             }
@@ -363,14 +357,8 @@
             const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const secs = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Update Big Timer
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("mins").innerText = mins;
-            document.getElementById("secs").innerText = secs;
-
             // Update Mini Top Bar Timer
-            document.getElementById("miniTimer").innerText = days + "d " + hours + "h Left";
+            document.getElementById("miniTimer").innerText = days + "d " + hours + "h " + mins + "m Left";
         }
         setInterval(updateTimers, 1000);
 
