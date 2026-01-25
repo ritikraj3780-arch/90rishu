@@ -37,9 +37,14 @@
             position: sticky; top: 28px; z-index: 1000; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
         }
+        
         .brand-container { display: flex; align-items: center; gap: 10px; }
         .logo-img { height: 32px; width: auto; }
-        .brand-name { color: var(--accent-gold); font-weight: 800; font-size: 1.1rem; text-transform: uppercase; }
+        
+        .brand-name {
+            color: var(--accent-gold); font-weight: 800; font-size: 1.1rem;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
         @media (max-width: 480px) { .brand-name { font-size: 0.85rem; } .logo-img { height: 28px; } }
         
         .contact-btn { 
@@ -48,45 +53,34 @@
             display: flex; align-items: center; gap: 5px; text-transform: uppercase;
         }
         .contact-btn:hover { color: var(--accent-gold); }
-        .contact-dropdown { display: none; position: absolute; top: 120%; right: 0; background: white; min-width: 140px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden; z-index: 1001; }
-        .contact-dropdown a { display: block; padding: 10px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; font-size: 0.85rem; }
+        .contact-dropdown { display: none; position: absolute; top: 100%; right: 0; background: white; min-width: 140px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1001; }
+        .contact-dropdown a { display: block; padding: 10px; color: #333; text-decoration: none; border-bottom: 1px solid #eee; font-size: 0.85rem; }
         .contact-dropdown.show { display: block; }
 
-        /* --- 3. SMART RESPONSIVE SLIDER (PW STYLE) --- */
+        /* 3. RESPONSIVE SLIDER (THE MAGIC PART) */
         .slider-container {
-            width: 100%; 
-            position: relative; 
-            overflow: hidden; 
-            margin: 0; 
-            padding: 0;
-            background: #000;
+            width: 100%; position: relative; overflow: hidden; margin: 0; padding: 0;
+            /* Height adjusts automatically based on image */
         }
 
-        /* MOBILE: Use Square Aspect Ratio */
-        @media (max-width: 768px) {
-            .slider-container { aspect-ratio: 1 / 1; }
-        }
+        .slider-wrapper { position: relative; width: 100%; }
 
-        /* LAPTOP: Use Wide Banner Aspect Ratio */
-        @media (min-width: 769px) {
-            .slider-container { aspect-ratio: 3 / 1; max-height: 500px; }
-        }
-
-        .slider-wrapper { width: 100%; height: 100%; position: relative; }
-        
+        /* Picture tag handles the switching logic */
         .slide {
-            display: none; /* Hidden by default */
-            width: 100%; height: 100%;
-            position: absolute; top: 0; left: 0;
+            display: none; /* Hide all by default */
+            width: 100%;
+            transition: opacity 0.5s ease-in-out;
         }
         
-        .slide.active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0.5; } to { opacity: 1; } }
+        .slide.active { display: block; animation: fadeEffect 0.8s; }
+        
+        /* Animation for smooth transition */
+        @keyframes fadeEffect { from {opacity: 0.6;} to {opacity: 1;} }
 
-        /* Image styling */
+        /* Image styling inside slide */
         .slide img {
-            width: 100%; height: 100%;
-            object-fit: cover; /* Ensures it fills the box perfectly */
+            width: 100%;
+            height: auto; /* Keeps original ratio */
             display: block;
         }
 
@@ -97,7 +91,7 @@
         }
         .prev-btn { left: 10px; } .next-btn { right: 10px; }
 
-        /* HERO & CONTENT */
+/* HERO SECTION */
         .hero { background: linear-gradient(135deg, #0a192f 0%, #112240 100%); color: white; padding: 30px 20px 50px 20px; text-align: center; border-top: 2px solid var(--accent-gold); }
         .hero h1 { margin: 0 0 10px 0; font-size: 1.8rem; color: var(--accent-gold); }
         .hero p { font-size: 0.95rem; margin: 10px auto; max-width: 600px; opacity: 0.9; }
@@ -107,6 +101,7 @@
         .time-val { display: block; font-size: 1.2rem; font-weight: bold; color: var(--white); }
         .time-label { font-size: 0.6rem; color: var(--accent-gold); text-transform: uppercase; }
 
+        /* CONTENT */
         .container { max-width: 800px; margin: -30px auto 20px auto; padding: 0 15px; position: relative; z-index: 10; padding-bottom: 80px; }
         .info-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); margin-bottom: 15px; border-top: 4px solid var(--accent-gold); }
         .info-card h3 { margin-top: 0; color: var(--primary-blue); border-bottom: 1px solid #eee; padding-bottom: 8px; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
@@ -121,9 +116,9 @@
         .syllabus-card { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2px solid #e5e7eb; padding: 12px; border-radius: 8px; margin-top: 10px; text-decoration: none; color: #333; }
         .syllabus-text { font-weight: 600; font-size: 0.9rem; }
         
-        .site-footer { text-align: center; padding: 20px; font-size: 0.8rem; color: #777; margin-bottom: 60px; }
         .sticky-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 12px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); display: flex; justify-content: center; z-index: 900; }
         .register-btn { background: var(--accent-gold); color: var(--primary-blue); border: none; padding: 14px 40px; font-size: 16px; font-weight: 800; border-radius: 50px; width: 100%; max-width: 400px; text-transform: uppercase; box-shadow: 0 4px 10px rgba(251, 191, 36, 0.4); }
+        .site-footer { text-align: center; padding: 20px; font-size: 0.8rem; color: #777; margin-bottom: 60px; }
 
         /* FAQ */
         .faq-item { border-bottom: 1px solid #eee; padding: 10px 0; }
@@ -136,7 +131,8 @@
         .modal-content { background: white; width: 100%; max-width: 500px; padding: 25px; border-radius: 20px 20px 0 0; animation: slideUp 0.3s ease-out; max-height: 90vh; overflow-y: auto; }
         @media(min-width:600px){ .modal{align-items:center;} .modal-content{border-radius:15px;} }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #999; }
+
+.close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #999; }
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 4px; }
         input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
@@ -197,6 +193,7 @@
         <h1>BIHAR SCHOLARSHIP TEST</h1>
         <p>Empowering Merit, Fueling Future Leaders.</p>
         <div style="background:var(--accent-gold); color:var(--primary-blue); padding:4px 12px; border-radius:20px; display:inline-block; font-weight:bold; font-size:0.9rem;">🏆 Prizes Worth ₹1 Lakh+</div>
+        
         <br>
         <div class="timer-box" id="countdown">
             <div class="time-unit"><span class="time-val" id="days">00</span><span class="time-label">Days</span></div>
@@ -207,14 +204,17 @@
     </div>
 
     <div class="container">
+        
         <div class="info-card">
             <h3><i class="fas fa-rocket" style="color:var(--accent-gold);"></i> Why Participate?</h3>
             <div class="feature-grid">
                 <div class="feature-item"><i class="fas fa-rupee-sign" style="color:#10b981;"></i> Cash Rewards</div>
                 <div class="feature-item"><i class="fas fa-medal" style="color:#f59e0b;"></i> State Ranking</div>
                 <div class="feature-item"><i class="fas fa-certificate" style="color:#3b82f6;"></i> Certified Certificate</div>
-                <div class="feature-item"><i class="fas fa-graduation-cap" style="color:#8b5cf6;"></i> Resonance Coaching</div>
+
+<div class="feature-item"><i class="fas fa-graduation-cap" style="color:#8b5cf6;"></i> Resonance Coaching</div>
             </div>
+            
             <div class="founder-box">
                 <div style="font-size:20px;">👨‍🏫</div>
                 <div class="founder-text">
@@ -229,6 +229,7 @@
             <p><strong>Date:</strong> 1st April 2026</p>
             <p><strong>Fee:</strong> ₹199 Only</p>
             <p><strong>Mode:</strong> Offline (Your School) / Online</p>
+            
             <a href="syllabus.pdf" class="syllabus-card">
                 <div class="syllabus-left">
                     <i class="far fa-file-pdf" style="color:#ef4444; font-size:20px;"></i>
@@ -249,6 +250,7 @@
                 <div class="faq-a">Agar aap 'Offline in School' select karte hain, toh exam aapke school me hoga.</div>
             </div>
         </div>
+        
     </div>
 
     <div class="site-footer">
@@ -266,25 +268,63 @@
             <span class="close-btn" onclick="closeForm()">&times;</span>
             <h2 style="color:var(--primary-blue); margin:0 0 5px 0;">Student Registration</h2>
             <p style="color:#666; margin:0 0 20px 0; font-size:0.9rem;">Fill details to proceed to payment</p>
+            
             <form id="scholarshipForm">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="Subject" value="New Registration 2026">
-                <div class="form-group"><label>Student Full Name</label><input type="text" name="Student Name" required placeholder="Ex: Rahul Kumar"></div>
-                <div class="form-group"><label>Father's Name</label><input type="text" name="Parent Name" required placeholder="Ex: Manoj Kumar"></div>
-                <div class="form-group"><label>School Name & City</label><input type="text" name="School Name" required placeholder="Ex: DPS, Muzaffarpur"></div>
-                <div class="form-group"><label>Class</label><select name="Class" required><option value="" disabled selected>Select Class</option><option value="6th">Class 6</option><option value="7th">Class 7</option><option value="8th">Class 8</option><option value="9th">Class 9</option><option value="10th">Class 10</option><option value="11th">Class 11</option><option value="12th">Class 12</option></select></div>
-                <div class="form-group"><label>Mode</label><select name="Mode" required><option value="Offline (In School)">Offline (In My School)</option><option value="Online">Online (From Home)</option></select></div>
-                <div class="form-group"><label>WhatsApp Number</label><input type="tel" name="Mobile" required placeholder="10 digit number" pattern="[0-9]{10}"></div>
-                <button type="submit" class="submit-btn" id="payBtn">Pay ₹199 & Register <span id="loader" style="display:none">🔄</span></button>
+
+                <div class="form-group">
+                    <label>Student Full Name</label>
+                    <input type="text" name="Student Name" required placeholder="Ex: Rahul Kumar">
+                </div>
+                <div class="form-group">
+                    <label>Father's Name</label>
+                    <input type="text" name="Parent Name" required placeholder="Ex: Manoj Kumar">
+                </div>
+                <div class="form-group">
+                    <label>School Name & City</label>
+                    <input type="text" name="School Name" required placeholder="Ex: DPS, Muzaffarpur">
+                </div>
+                <div class="form-group">
+                    <label>Class</label>
+                    <select name="Class" required>
+
+<option value="" disabled selected>Select Class</option>
+                        <option value="6th">Class 6</option>
+                        <option value="7th">Class 7</option>
+                        <option value="8th">Class 8</option>
+                        <option value="9th">Class 9</option>
+                        <option value="10th">Class 10</option>
+                        <option value="11th">Class 11</option>
+                        <option value="12th">Class 12</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Mode</label>
+                    <select name="Mode" required>
+                        <option value="Offline (In School)">Offline (In My School)</option>
+                        <option value="Online">Online (From Home)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp Number</label>
+                    <input type="tel" name="Mobile" required placeholder="10 digit number" pattern="[0-9]{10}">
+                </div>
+
+                <button type="submit" class="submit-btn" id="payBtn">
+                    Pay ₹199 & Register <span id="loader" style="display:none">🔄</span>
+                </button>
             </form>
         </div>
     </div>
 
     <script>
+        // CONFIG
         const EMAIL_ENDPOINT = "https://formsubmit.co/ajax/90plusacademy.official@gmail.com";
         const RAZORPAY_LINK = "https://rzp.io/rzp/d8AaoTA7"; 
 
+        // Toggle Contact
         function toggleContact() { document.getElementById("contactDropdown").classList.toggle("show"); }
         window.onclick = function(e) {
             if (!e.target.matches('.contact-btn') && !e.target.closest('.contact-btn')) {
@@ -294,40 +334,52 @@
             if (e.target == modal) closeForm();
         }
 
+        // TIMER LOGIC (TARGET: APRIL 1, 2026)
         const examDate = new Date("April 1, 2026 00:00:00").getTime();
+        
         function updateTimers() {
             const now = new Date().getTime();
             const distance = examDate - now;
+            
             if (distance < 0) {
                 document.getElementById("countdown").innerHTML = "<div style='color:white; font-weight:bold'>REGISTRATION CLOSED</div>";
                 document.getElementById("miniTimer").innerText = "CLOSED";
                 return;
             }
+
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Update Big Timer
             document.getElementById("days").innerText = days;
             document.getElementById("hours").innerText = hours;
             document.getElementById("mins").innerText = mins;
             document.getElementById("secs").innerText = secs;
+
+            // Update Mini Top Bar Timer
             document.getElementById("miniTimer").innerText = days + "d " + hours + "h " + mins + "m Left";
         }
         setInterval(updateTimers, 1000);
 
+        // SLIDER LOGIC (Works with Picture Tag)
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         let slideInterval;
+        
         function showSlide(index) {
             slides[currentSlide].classList.remove('active');
             currentSlide = (index + slides.length) % slides.length;
             slides[currentSlide].classList.add('active');
-        }
+
+}
         function nextSlide() { showSlide(currentSlide + 1); resetTimer(); }
         function prevSlide() { showSlide(currentSlide - 1); resetTimer(); }
         function resetTimer() { clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 3000); }
         if(slides.length > 0) slideInterval = setInterval(nextSlide, 3000);
 
+        // FORM LOGIC
         const modal = document.getElementById("registerModal");
         const form = document.getElementById("scholarshipForm");
         const payBtn = document.getElementById("payBtn");
@@ -335,19 +387,4 @@
         function openForm() { modal.style.display = "flex"; }
         function closeForm() { modal.style.display = "none"; }
 
-        form.addEventListener("submit", function(e) {
-            e.preventDefault();
-            payBtn.disabled = true;
-            payBtn.innerHTML = "Processing...";
-            loader.style.display = "inline-block";
-            const regID = "REG-" + Math.floor(Math.random() * 8999 + 1000);
-            const formData = new FormData(form);
-            formData.append("Registration ID", regID);
-            fetch(EMAIL_ENDPOINT, { method: "POST", headers: { 'Accept': 'application/json' }, body: formData })
-            .then(response => response.json())
-            .then(data => { window.location.href = RAZORPAY_LINK; })
-            .catch(error => { alert("Network delay, redirecting..."); window.location.href = RAZORPAY_LINK; });
-        });
-    </script>
-</body>
-</html>
+        form.
