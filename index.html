@@ -6,139 +6,130 @@
     <title>90+ Academy Scholarship Test</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- PREMIUM THEME --- */
+        /* --- PREMIUM BRAND THEME --- */
         :root {
             --primary-blue: #0a192f;
             --accent-gold: #fbbf24;
             --white: #ffffff;
-            --light-gray: #f3f4f6;
-            --alert-red: #dc2626;
+            --light-gray: #f8fafc;
+            --text-dark: #1f2937;
+            --alert-red: #ef4444;
         }
 
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--light-gray); color: #333; overflow-x: hidden; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--light-gray); color: var(--text-dark); overflow-x: hidden; padding-bottom: 80px; }
         
-        /* 1. TOP URGENCY BAR */
+        /* 1. TOP URGENCY BAR (CENTERED) */
         .top-bar {
             background: var(--alert-red);
             color: white;
             text-align: center;
-            padding: 5px 0;
+            padding: 6px 0;
             font-size: 0.75rem;
-            font-weight: bold;
-            display: flex; justify-content: center; align-items: center; gap: 10px;
+            font-weight: 700;
+            display: flex; justify-content: center; align-items: center; gap: 8px;
             position: sticky; top: 0; z-index: 1002;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            letter-spacing: 0.5px;
         }
-        .mini-timer { background: rgba(0,0,0,0.2); padding: 1px 6px; border-radius: 3px; font-family: monospace; letter-spacing: 0.5px; }
+        .mini-timer { background: rgba(0,0,0,0.2); padding: 1px 6px; border-radius: 3px; font-family: monospace; }
 
-        /* 2. HEADER */
+        /* 2. HEADER (CLEAN & TRUSTABLE) */
         header { 
             background: var(--primary-blue); padding: 10px 15px; 
             display: flex; align-items: center; justify-content: space-between; 
-            position: sticky; top: 28px; z-index: 1000; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+            position: sticky; top: 29px; z-index: 1000; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
         }
         
-        .brand-container { display: flex; align-items: center; gap: 10px; }
-        .logo-img { height: 32px; width: auto; }
+        .brand-container { display: flex; align-items: center; gap: 8px; }
+        .logo-img { height: 35px; width: auto; }
+        .brand-name { color: var(--accent-gold); font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; }
         
-        .brand-name {
-            color: var(--accent-gold); font-weight: 800; font-size: 1rem;
-            text-transform: uppercase; letter-spacing: 0.5px;
-        }
-        @media (max-width: 480px) { .brand-name { font-size: 0.85rem; } .logo-img { height: 28px; } }
-        
+        /* Minimal Support Button */
         .contact-btn { 
-            background: transparent; border: none; color: var(--white); 
-            padding: 5px; cursor: pointer; font-size: 0.8rem; font-weight: 600;
-            display: flex; align-items: center; gap: 5px; text-transform: uppercase;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); 
+            color: var(--white); padding: 6px 12px; cursor: pointer; 
+            font-size: 0.75rem; font-weight: 600; border-radius: 50px;
+            display: flex; align-items: center; gap: 6px; 
         }
-        .contact-btn:hover { color: var(--accent-gold); }
-        .contact-dropdown { display: none; position: absolute; top: 120%; right: 0; background: white; min-width: 140px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden; z-index: 1001; }
-        .contact-dropdown a { display: block; padding: 10px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; font-size: 0.85rem; }
+        .contact-dropdown { display: none; position: absolute; top: 120%; right: 5px; background: white; min-width: 150px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-radius: 10px; overflow: hidden; z-index: 1001; }
+        .contact-dropdown a { display: flex; align-items: center; gap: 10px; padding: 12px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; font-size: 0.85rem; }
         .contact-dropdown.show { display: block; }
 
-        /* 3. SLIDER SECTION (3 PHOTO FIX) */
+        /* 3. SLIDER (BLACK BG TRICK FOR 3 PHOTOS) */
         .slider-container {
-            width: 100%; 
-            position: relative; 
-            overflow: hidden; 
-            background: #000; /* Black fills the gaps */
-            margin-bottom: 0;
+            width: 100%; position: relative; overflow: hidden; 
+            background: #000; margin-bottom: 0;
         }
-
-        /* Mobile: Keep aspect ratio balanced */
-        @media (max-width: 768px) {
-            .slider-container { aspect-ratio: 16/9; } 
-        }
-
-        /* Laptop: Fix height so it doesn't get too big */
-        @media (min-width: 769px) {
-            .slider-container { height: 450px; } 
-        }
+        /* Mobile Aspect Ratio */
+        @media (max-width: 768px) { .slider-container { aspect-ratio: 16/9; } }
+        /* Laptop Height Fix */
+        @media (min-width: 769px) { .slider-container { height: 450px; } }
 
         .slider-wrapper { width: 100%; height: 100%; position: relative; }
-        
-        /* THE MAGIC: 'contain' ensures full photo is visible always */
-        .slide { 
-            width: 100%; height: 100%; 
-            object-fit: contain; 
-            position: absolute; top: 0; left: 0; 
-            opacity: 0; transition: opacity 0.5s ease-in-out; 
-        }
+        .slide { width: 100%; height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.5s ease-in-out; }
         .slide.active { opacity: 1; }
         
-        .slider-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(0,0,0,0.3); color: white; border: none;
-            padding: 10px 15px; cursor: pointer; border-radius: 50%; z-index: 60; font-size: 18px;
-        }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 50%; z-index: 60; font-size: 18px; }
         .prev-btn { left: 10px; } .next-btn { right: 10px; }
 
-        /* HERO & CONTENT */
-        .hero { background: linear-gradient(135deg, #0a192f 0%, #112240 100%); color: white; padding: 30px 20px 50px 20px; text-align: center; border-top: 2px solid var(--accent-gold); }
-        .hero h1 { margin: 0 0 10px 0; font-size: 1.8rem; color: var(--accent-gold); }
-        .hero p { font-size: 0.95rem; margin: 10px auto; max-width: 600px; opacity: 0.9; }
+        /* HERO SECTION */
+        .hero { background: linear-gradient(135deg, #0a192f 0%, #112240 100%); color: white; padding: 30px 20px 40px 20px; text-align: center; border-top: 3px solid var(--accent-gold); }
+        .hero h1 { margin: 0 0 5px 0; font-size: 1.8rem; color: var(--accent-gold); line-height: 1.2; text-shadow: 0 2px 10px rgba(251, 191, 36, 0.3); }
+        .hero p { font-size: 0.9rem; margin: 10px auto; opacity: 0.9; max-width: 600px; }
         
-        .timer-box { background: rgba(255,255,255,0.1); display: inline-flex; gap: 10px; padding: 10px 15px; border-radius: 8px; margin-top: 15px; border: 1px solid rgba(251, 191, 36, 0.3); }
-        .time-unit { text-align: center; }
-        .time-val { display: block; font-size: 1.2rem; font-weight: bold; color: var(--white); }
-        .time-label { font-size: 0.6rem; color: var(--accent-gold); text-transform: uppercase; }
+        /* 4. NEW PRIZE GRID (Based on your Photo) */
+        .prize-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+        .prize-card { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; border: 1px solid rgba(251, 191, 36, 0.3); }
+        .prize-rank { font-size: 0.7rem; color: var(--accent-gold); text-transform: uppercase; font-weight: bold; }
+        .prize-amount { font-size: 1.1rem; font-weight: 800; color: #fff; margin-top: 2px; }
 
-        .container { max-width: 800px; margin: -30px auto 20px auto; padding: 0 15px; position: relative; z-index: 10; padding-bottom: 80px; }
-        .info-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); margin-bottom: 15px; border-top: 4px solid var(--accent-gold); }
+        /* CONTAINER */
+        .container { max-width: 800px; margin: -20px auto 20px auto; padding: 0 15px; position: relative; z-index: 10; }
+        .info-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); margin-bottom: 15px; border-top: 4px solid var(--accent-gold); }
         .info-card h3 { margin-top: 0; color: var(--primary-blue); border-bottom: 1px solid #eee; padding-bottom: 8px; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
         
-        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .feature-item { background: #f8fafc; padding: 10px; border-radius: 6px; font-weight: 500; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; border: 1px solid #eee; }
+        .details-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 10px; }
+        .details-table td { padding: 8px 0; border-bottom: 1px solid #eee; }
+        .details-table td:first-child { font-weight: 600; color: #555; width: 40%; }
+        .details-table td:last-child { color: var(--primary-blue); font-weight: 700; text-align: right; }
 
-        .founder-box { display: flex; align-items: center; gap: 12px; background: #eff6ff; padding: 12px; border-radius: 8px; margin-top: 15px; border: 1px solid #bfdbfe; }
-        .founder-text h4 { margin: 0; color: var(--primary-blue); font-size: 0.95rem; }
-        .founder-text p { margin: 2px 0 0 0; font-size: 0.75rem; color: #555; }
+        /* FOUNDER */
+        .founder-box { display: flex; align-items: center; gap: 12px; background: #eff6ff; padding: 15px; border-radius: 10px; margin-top: 15px; border: 1px solid #bfdbfe; }
+        .founder-text h4 { margin: 0; color: var(--primary-blue); font-size: 1rem; }
+        .founder-text p { margin: 2px 0 0 0; font-size: 0.8rem; color: #555; }
 
-        .syllabus-card { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2px solid #e5e7eb; padding: 12px; border-radius: 8px; margin-top: 10px; text-decoration: none; color: #333; }
-        .syllabus-text { font-weight: 600; font-size: 0.9rem; }
-        
-        .site-footer { text-align: center; padding: 20px; font-size: 0.8rem; color: #777; margin-bottom: 60px; }
-        .sticky-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 12px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); display: flex; justify-content: center; z-index: 900; }
-        .register-btn { background: var(--accent-gold); color: var(--primary-blue); border: none; padding: 14px 40px; font-size: 16px; font-weight: 800; border-radius: 50px; width: 100%; max-width: 400px; text-transform: uppercase; box-shadow: 0 4px 10px rgba(251, 191, 36, 0.4); }
-
-        /* FAQ */
-        .faq-item { border-bottom: 1px solid #eee; padding: 10px 0; }
-        .faq-q { font-weight: 600; font-size: 0.9rem; cursor: pointer; display: flex; justify-content: space-between; }
-        .faq-a { font-size: 0.85rem; color: #666; margin-top: 5px; display: none; }
-        .faq-item.active .faq-a { display: block; }
+        /* 5. FLOATING STICKY BUTTON (Phone Optimized) */
+        .sticky-wrapper { 
+            position: fixed; bottom: 20px; left: 0; width: 100%; 
+            display: flex; justify-content: center; z-index: 900; 
+            pointer-events: none; /* Allows clicking through empty space */
+        }
+        .register-btn { 
+            pointer-events: auto;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b); 
+            color: var(--primary-blue); border: none; 
+            padding: 15px 40px; font-size: 16px; font-weight: 800; 
+            border-radius: 50px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+            text-transform: uppercase; 
+            display: flex; align-items: center; gap: 10px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 
         /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: flex-end; backdrop-filter: blur(3px); }
         .modal-content { background: white; width: 100%; max-width: 500px; padding: 25px; border-radius: 20px 20px 0 0; animation: slideUp 0.3s ease-out; max-height: 90vh; overflow-y: auto; }
         @media(min-width:600px){ .modal{align-items:center;} .modal-content{border-radius:15px;} }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #999; }
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 4px; }
         input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
-        .submit-btn { width: 100%; padding: 14px; background: var(--primary-blue); color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; margin-top: 10px; }
+        .submit-btn { width: 100%; padding: 14px; background: var(--primary-blue); color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; margin-top: 10px; width: 100%; }
+        
+        .site-footer { text-align: center; padding: 20px; font-size: 0.8rem; color: #777; background: #fff; margin-top: 30px; }
     </style>
 </head>
 <body>
@@ -178,69 +169,74 @@
     <div class="hero">
         <h1>BIHAR SCHOLARSHIP TEST</h1>
         <p>Empowering Merit, Fueling Future Leaders.</p>
-        <div style="background:var(--accent-gold); color:var(--primary-blue); padding:4px 12px; border-radius:20px; display:inline-block; font-weight:bold; font-size:0.9rem;">🏆 Prizes Worth ₹1 Lakh+</div>
-        <br>
-        <div class="timer-box" id="countdown">
-            <div class="time-unit"><span class="time-val" id="days">00</span><span class="time-label">Days</span></div>
-            <div class="time-unit"><span class="time-val" id="hours">00</span><span class="time-label">Hrs</span></div>
-            <div class="time-unit"><span class="time-val" id="mins">00</span><span class="time-label">Mins</span></div>
-            <div class="time-unit"><span class="time-val" id="secs">00</span><span class="time-label">Secs</span></div>
+        
+        <div class="prize-grid">
+            <div class="prize-card">
+                <div class="prize-rank">1st Prize</div>
+                <div class="prize-amount">₹50,000</div>
+            </div>
+            <div class="prize-card">
+                <div class="prize-rank">2nd Prize</div>
+                <div class="prize-amount">₹30,000</div>
+            </div>
+            <div class="prize-card">
+                <div class="prize-rank">3rd Prize</div>
+                <div class="prize-amount">₹20,000</div>
+            </div>
         </div>
     </div>
 
     <div class="container">
+        
         <div class="info-card">
-            <h3><i class="fas fa-rocket" style="color:var(--accent-gold);"></i> Why Participate?</h3>
-            <div class="feature-grid">
-                <div class="feature-item"><i class="fas fa-rupee-sign" style="color:#10b981;"></i> Cash Rewards</div>
-                <div class="feature-item"><i class="fas fa-medal" style="color:#f59e0b;"></i> State Ranking</div>
-                <div class="feature-item"><i class="fas fa-certificate" style="color:#3b82f6;"></i> Certified Certificate</div>
-                <div class="feature-item"><i class="fas fa-graduation-cap" style="color:#8b5cf6;"></i> Resonance Coaching</div>
-            </div>
+            <h3><i class="far fa-calendar-alt" style="color:var(--accent-gold);"></i> Exam Schedule</h3>
+            <table class="details-table">
+                <tr><td>Date</td><td>1st April 2026</td></tr>
+                <tr><td>Time</td><td>10:00 AM - 12:00 PM</td></tr>
+                <tr><td>Eligibility</td><td>Class 6 to 12</td></tr>
+                <tr><td>Mode</td><td>Offline (At Centre)</td></tr>
+                <tr><td>Fee</td><td>₹199 Only</td></tr>
+            </table>
+        </div>
+
+        <div class="info-card">
+            <h3><i class="fas fa-rocket" style="color:var(--accent-gold);"></i> Benefits</h3>
+            <ul style="margin:0; padding-left:20px; font-size:0.9rem; line-height:1.6; color:#444;">
+                <li><strong>Resonance Coaching:</strong> 2-Year Free for Class 10 Topper.</li>
+                <li><strong>Resonance Coaching:</strong> 1-Year Free for Class 12 Topper.</li>
+                <li>State Level Ranking & Certification.</li>
+                <li>Instant Scholarship on Admission.</li>
+            </ul>
+            
             <div class="founder-box">
-                <div style="font-size:20px;">👨‍🏫</div>
+                <div style="font-size:24px;">👨‍🏫</div>
                 <div class="founder-text">
                     <h4>Raj Aditya Pandey</h4>
-                    <p>Founder & Mentor | Vision: Education for All</p>
+                    <p>Founder & Managing Director</p>
                 </div>
             </div>
         </div>
 
         <div class="info-card">
-            <h3><i class="far fa-calendar-alt" style="color:var(--accent-gold);"></i> Exam Details</h3>
-            <p><strong>Date:</strong> 1st April 2026</p>
-            <p><strong>Fee:</strong> ₹199 Only</p>
-            <p><strong>Mode:</strong> Offline (Your School) / Online</p>
-            <a href="syllabus.pdf" class="syllabus-card">
-                <div class="syllabus-left">
-                    <i class="far fa-file-pdf" style="color:#ef4444; font-size:20px;"></i>
-                    <span class="syllabus-text">View Syllabus PDF</span>
-                </div>
-                <i class="fas fa-eye" style="color:var(--primary-blue);"></i>
+            <h3><i class="far fa-file-pdf" style="color:var(--accent-gold);"></i> Syllabus</h3>
+            <p style="font-size:0.9rem; color:#666; margin-bottom:10px;">Prepare according to NCERT guidelines for your class.</p>
+            <a href="syllabus.pdf" style="display:block; text-align:center; background:#f3f4f6; padding:10px; border-radius:6px; text-decoration:none; color:var(--primary-blue); font-weight:bold; border:1px dashed #ccc;">
+                <i class="fas fa-download"></i> Download Syllabus PDF
             </a>
         </div>
-
-        <div class="info-card">
-            <h3><i class="far fa-question-circle" style="color:var(--accent-gold);"></i> FAQ</h3>
-            <div class="faq-item" onclick="this.classList.toggle('active')">
-                <div class="faq-q">Q. Admit Card kab milega? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-a">Exam se 3 din pehle WhatsApp aur Email par bheja jayega.</div>
-            </div>
-            <div class="faq-item" onclick="this.classList.toggle('active')">
-                <div class="faq-q">Q. Exam Center kahan hoga? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-a">Agar aap 'Offline in School' select karte hain, toh exam aapke school me hoga.</div>
-            </div>
-        </div>
+        
     </div>
 
     <div class="site-footer">
         <p>📍 Rahul Nagar, Muzaffarpur, Bihar</p>
         <p>&copy; 2026 90+ Academy. All Rights Reserved.</p>
-        <p style="font-size:0.75rem; margin-top:8px;"><a href="#">Privacy Policy</a></p>
+        <p style="font-size:0.75rem; margin-top:8px;"><a href="#">Terms</a> | <a href="#">Privacy</a></p>
     </div>
 
-    <div class="sticky-footer">
-        <button class="register-btn" onclick="openForm()">Register Now @ ₹199 <i class="fas fa-arrow-right"></i></button>
+    <div class="sticky-wrapper">
+        <button class="register-btn" onclick="openForm()">
+            Register Now @ ₹199 <i class="fas fa-arrow-right"></i>
+        </button>
     </div>
 
     <div id="registerModal" class="modal">
@@ -248,17 +244,37 @@
             <span class="close-btn" onclick="closeForm()">&times;</span>
             <h2 style="color:var(--primary-blue); margin:0 0 5px 0;">Student Registration</h2>
             <p style="color:#666; margin:0 0 20px 0; font-size:0.9rem;">Fill details to proceed to payment</p>
+            
             <form id="scholarshipForm">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="Subject" value="New Registration 2026">
+
                 <div class="form-group"><label>Student Full Name</label><input type="text" name="Student Name" required placeholder="Ex: Rahul Kumar"></div>
                 <div class="form-group"><label>Father's Name</label><input type="text" name="Parent Name" required placeholder="Ex: Manoj Kumar"></div>
                 <div class="form-group"><label>School Name & City</label><input type="text" name="School Name" required placeholder="Ex: DPS, Muzaffarpur"></div>
-                <div class="form-group"><label>Class</label><select name="Class" required><option value="" disabled selected>Select Class</option><option value="6th">Class 6</option><option value="7th">Class 7</option><option value="8th">Class 8</option><option value="9th">Class 9</option><option value="10th">Class 10</option><option value="11th">Class 11</option><option value="12th">Class 12</option></select></div>
-                <div class="form-group"><label>Mode</label><select name="Mode" required><option value="Offline (In School)">Offline (In My School)</option><option value="Online">Online (From Home)</option></select></div>
+                <div class="form-group">
+                    <label>Class</label>
+                    <select name="Class" required>
+                        <option value="" disabled selected>Select Class</option>
+                        <option value="6th">Class 6</option><option value="7th">Class 7</option>
+                        <option value="8th">Class 8</option><option value="9th">Class 9</option>
+                        <option value="10th">Class 10</option><option value="11th">Class 11</option>
+                        <option value="12th">Class 12</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Mode</label>
+                    <select name="Mode" required>
+                        <option value="Offline (In School)">Offline (In My School)</option>
+                        <option value="Online">Online (From Home)</option>
+                    </select>
+                </div>
                 <div class="form-group"><label>WhatsApp Number</label><input type="tel" name="Mobile" required placeholder="10 digit number" pattern="[0-9]{10}"></div>
-                <button type="submit" class="submit-btn" id="payBtn">Pay ₹199 & Register <span id="loader" style="display:none">🔄</span></button>
+
+                <button type="submit" class="submit-btn" id="payBtn">
+                    Pay ₹199 & Register <span id="loader" style="display:none">🔄</span>
+                </button>
             </form>
         </div>
     </div>
@@ -276,27 +292,23 @@
             if (e.target == modal) closeForm();
         }
 
+        // TIMER LOGIC (TARGET: APRIL 1, 2026)
         const examDate = new Date("April 1, 2026 00:00:00").getTime();
         function updateTimers() {
             const now = new Date().getTime();
             const distance = examDate - now;
             if (distance < 0) {
-                document.getElementById("countdown").innerHTML = "<div style='color:white; font-weight:bold'>REGISTRATION CLOSED</div>";
                 document.getElementById("miniTimer").innerText = "CLOSED";
                 return;
             }
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const secs = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("mins").innerText = mins;
-            document.getElementById("secs").innerText = secs;
             document.getElementById("miniTimer").innerText = days + "d " + hours + "h " + mins + "m Left";
         }
         setInterval(updateTimers, 1000);
 
+        // SLIDER LOGIC
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         let slideInterval;
@@ -310,6 +322,7 @@
         function resetTimer() { clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 3000); }
         if(slides.length > 0) slideInterval = setInterval(nextSlide, 3000);
 
+        // FORM LOGIC
         const modal = document.getElementById("registerModal");
         const form = document.getElementById("scholarshipForm");
         const payBtn = document.getElementById("payBtn");
